@@ -1,6 +1,11 @@
-# Notebooks
+## Notebook implementation
 
-This folder contains Jupyter notebooks used for experimentation and visualization.
+The full baseline pipeline is implemented in the following notebook:
 
-- Notebooks are not optimized scripts.
-- Final and reusable code will be placed in `src/`.
+- `notebooks/cnn_baseline_ucmerced.ipynb`
+
+This notebook includes:
+- Dataset loading and preprocessing
+- CNN definition
+- Training with data augmentation
+- Evaluation, confusion matrix and per-class accuracy
