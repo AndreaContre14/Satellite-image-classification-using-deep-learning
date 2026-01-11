@@ -1,8 +1,23 @@
-# Satellite image classification using deep learning
+# Satellite Image Classification using Deep Learning
 
-Repositorio para experimentos de clasificación de imágenes satelitales con diferentes arquitecturas CNN.
+This repository contains a deep learning–based approach for satellite image classification
+using TensorFlow and convolutional neural networks (CNNs).
 
-Ramas propuestas:
-- linea-del-tiempo: historial y notas sobre el desarrollo.
-- cnn-basica: implementación y entrenamiento de una CNN simple.
-- cnn-robusta: experimentos con augmentación, regularización y arquitectura más robusta.
+## Project Stages
+1. Baseline CNN model
+2. Training improvements
+3. Explainability with saliency maps
+4. Noise robustness analysis
+5. Robust CNN architecture (ongoing)
+
+## Repository Structure
+- `data/`: dataset structure and splits (images not included)
+- `src/`: source code
+- `experiments/`: documentation of each experimental stage
+- `docs/`: methodology and results summaries
+
+## Framework
+- TensorFlow / Keras
+
+## Status
+Ongoing academic project.
