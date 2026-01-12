@@ -25,3 +25,14 @@ This notebook serves as the reference point for all subsequent experiments.
 
 ## Status
 Ongoing academic project.
+
+## Results overview
+
+| Model | Validation Accuracy | Test Accuracy |
+|---|---:|---:|
+| Baseline CNN | 80.95% | 87.14% |
+| Improved CNN (B3) | **95.71%** | **94.29%** |
+
+The improved training strategy (Experiment B3) significantly enhances generalization
+and serves as the final classification model for further analyses.
+
