@@ -4,7 +4,11 @@ This repository contains a deep learning–based approach for satellite image cl
 using TensorFlow and convolutional neural networks (CNNs).
 
 ## Project Stages
-1. Baseline CNN model
+1. Baseline CNN model: The baseline CNN model is fully implemented and documented in the following notebook:
+
+- `notebooks/cnn_baseline_ucmerced.ipynb`
+
+This notebook serves as the reference point for all subsequent experiments.
 2. Training improvements
 3. Explainability with saliency maps
 4. Noise robustness analysis
