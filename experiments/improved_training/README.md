@@ -34,7 +34,6 @@ Improve the baseline CNN by iteratively modifying architecture and training stra
 ## Status
 B3 is selected as the final improved training configuration.
 Quantitative results will be reported after evaluation.
-
 ## Results – Final configuration (B3)
 
 ### Training summary
@@ -75,3 +74,12 @@ Experiment B confirms that progressive architectural refinement and training str
 optimization lead to a robust and high-performing CNN model. Configuration B3 is selected
 as the final improved model for subsequent explainability and robustness analyses.
 
+---
+
+## Figures (B3)
+
+### Training curves
+![Training curves B3](figures/training_curves_B3.png)
+
+### Confusion matrix (test set)
+![Confusion matrix B3](figures/confusion_matrix_test_B3.png)
