@@ -28,6 +28,15 @@
 | Best validation accuracy | 83.33% |
 | Final learning rate | 1e-5 |
 
+## Figures
+
+### Training curves
+![Training curves](figures/training_curves_baseline.png)
+
+### Confusion matrix
+![Confusion matrix](figures/confusion_matrix_baseline.png)
+
+
 ### Class-wise performance (selected)
 - Perfect accuracy (100%): baseballdiamond, harbor, runway, sparseresidential,
   uc_airplane, uc_beach, uc_chaparral, uc_forest, uc_river
