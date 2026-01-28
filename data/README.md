@@ -11,7 +11,7 @@ Information Systems (ACM GIS).
 University of California, Merced.
 
 Dataset URL:
-http://weegee.vision.ucmerced.edu/datasets/landuse.html
+https://www.kaggle.com/datasets/abdulhasibuddin/uc-merced-land-use-dataset
 
 ## Dataset description
 - Number of classes: 21
