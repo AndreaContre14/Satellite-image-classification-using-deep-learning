@@ -10,15 +10,21 @@
 | Epochs executed | 82 | 204 |
 
 ### Discussion
-- The improved training configuration (B3) yields a **substantial gain** in validation
-  and test performance compared to the baseline CNN.
-- Architectural enhancements (deeper network, Global Average Pooling) combined with
-  controlled regularization significantly improve generalization.
-- Training dynamics refinement (callback patience) stabilizes convergence and enables
-  higher final performance.
-- The performance gap between training and validation remains controlled, indicating
-  limited overfitting.
+- The improved training configuration (**B3**) provides a substantial increase in
+  both validation and test performance with respect to the baseline CNN.
+- The combination of a deeper architecture, Global Average Pooling, and controlled
+  regularization significantly enhances the model’s generalization capability.
+- The refinement of training dynamics through callback tuning improves convergence
+  stability and allows the optimizer to reach a better final solution.
+- Although the improved model reaches 100% training accuracy, its validation and
+  test results remain high, indicating that the architectural and regularization
+  changes were effective in limiting harmful overfitting.
 
 ### Conclusion
-The improved CNN (B3) clearly outperforms the baseline and is selected as the
-reference model for subsequent explainability (saliency maps) and robustness analyses.
+The improved CNN (**B3**) clearly outperforms the baseline model and is therefore
+selected as the reference classifier for the subsequent experiments on:
+
+1. model explainability through saliency maps
+2. robustness under resolution degradation
+3. robustness under AWGN noise
+4. robustness under kernel-based blur
