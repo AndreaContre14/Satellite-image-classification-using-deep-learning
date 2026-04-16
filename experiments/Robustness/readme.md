@@ -1,4 +1,26 @@
-# Robustness Analysis – Resolution Degradation 
+# Robustness Analysis – Resolution, Noise, and Blur Degradation
+
+## Objective
+Evaluate the robustness of the trained CNN model under different image degradation
+conditions commonly found in remote sensing scenarios.
+
+This robustness analysis considers three types of degradation:
+
+1. **Spatial resolution reduction**
+2. **Additive White Gaussian Noise (AWGN)** controlled by the Signal-to-Noise Ratio (SNR)
+3. **Kernel-based blur degradation** using average convolution kernels of different sizes
+
+These experiments help determine how sensitive the classification model is to
+loss of spatial detail, image noise, and blur effects.
+
+## Reference model
+The robustness analysis is performed using the final improved model obtained in:
+
+- **Experiment B3 – Improved CNN training**
+
+---
+
+# D1 – Resolution Degradation
 
 ## Objective
 Evaluate the robustness of the trained CNN model when the spatial resolution of
@@ -7,11 +29,6 @@ the input images is reduced.
 Satellite imagery often suffers from resolution degradation depending on the
 sensor characteristics or acquisition conditions. This experiment analyzes how
 classification performance changes when the image resolution decreases.
-
-## Reference model
-The robustness analysis is performed using the final improved model obtained in:
-
-- **Experiment B3 – Improved CNN training**
 
 ## Methodology
 
@@ -26,10 +43,8 @@ preserving the original class structure.
 
 ### Generated resolutions
 
-The following datasets were created:
-
 | Dataset | Resolution |
-|-------|-------|
+|---|---|
 | Original dataset | 256 × 256 |
 | Degraded dataset | 128 × 128 |
 | Degraded dataset | 64 × 64 |
@@ -38,5 +53,173 @@ The following datasets were created:
 Each degraded dataset maintains the same **21-class structure** as the original
 UC Merced dataset.
 
-The preprocessing script used to generate these datasets is available in:
+## Repository notebooks
 
+The resolution-based dataset generation and experiments are implemented in the following notebooks:
+
+- `notebooks/resolution_dataset_generation.ipynb`
+- `notebooks/robustness_resolution_128.ipynb`
+- `notebooks/robustness_resolution_64.ipynb`
+- `notebooks/robustness_resolution_32.ipynb`
+
+## Dataset availability
+
+The degraded datasets are not included directly in the repository due to
+GitHub storage limitations.
+
+Additionally, the dataset corresponding to the **128×128 resolution**
+could not be uploaded because GitHub rejected the file with the message:
+
+> *"Yowza, that’s a big file. Try again with a file smaller than 25MB."*
+
+For this reason, the datasets must be generated locally using the provided
+preprocessing notebook.
+
+## Purpose of the experiment
+
+This analysis allows us to determine:
+
+- How sensitive the CNN model is to spatial resolution loss
+- How classification accuracy changes as image size decreases
+- The minimum spatial resolution required to preserve reliable classification
+
+---
+
+# D2 – AWGN Noise Robustness
+
+## Objective
+Evaluate how the CNN model behaves when the input images are corrupted with
+additive white Gaussian noise (AWGN).
+
+Noise is a common degradation in real-world remote sensing imagery due to
+sensor limitations, atmospheric interference, or transmission artifacts.
+
+## Methodology
+
+The noise was generated using **Additive White Gaussian Noise (AWGN)** controlled
+by the **Signal-to-Noise Ratio (SNR)**.
+
+For each image:
+
+1. The signal power was computed from the pixel intensity values.
+2. The required noise power was estimated from the desired SNR level.
+3. Gaussian noise with variance derived from the noise power was generated.
+4. The noise was added to the original image.
+5. Pixel values were clipped to the valid range [0,255].
+
+The noisy datasets preserve the same **21-class directory structure** as the
+original UC Merced dataset.
+
+### Evaluated SNR levels
+
+| Dataset | SNR |
+|---|---|
+| Original dataset | ∞ (no noise) |
+| Noisy dataset | 20 dB |
+| Noisy dataset | 10 dB |
+| Noisy dataset | 5 dB |
+
+Lower SNR values correspond to stronger noise and more severe image degradation.
+
+## Repository notebooks
+
+The AWGN dataset generation and experiments are implemented in the following notebooks:
+
+- `notebooks/noise_dataset_generation_awgn.ipynb`
+- `notebooks/robustness_snr_20db.ipynb`
+- `notebooks/robustness_snr_10db.ipynb`
+- `notebooks/robustness_snr_5db.ipynb`
+
+## Dataset availability
+
+The noisy datasets are not included directly in the repository due to
+GitHub storage limitations.
+
+They can be generated locally using the provided preprocessing notebook.
+
+## Purpose of the experiment
+
+This analysis allows us to determine:
+
+- How sensitive the CNN model is to image noise
+- How classification accuracy degrades as SNR decreases
+- The minimum signal quality required to maintain reliable classification
+
+---
+
+# D3 – Kernel-based Blur Robustness
+
+## Objective
+Evaluate how the CNN model behaves when the input images are degraded using
+blur kernels of increasing size.
+
+This type of degradation simulates spatial smoothing and loss of local detail,
+which may occur due to sensor limitations, optical blur, or spatial averaging.
+
+## Methodology
+
+Blur degradation was generated by convolving each image with a **normalized
+average kernel** using `cv2.filter2D()`.
+
+The implementation was adapted from the general concept of **linear filtering
+and convolution kernels** described in the OpenCV image filtering documentation.
+
+### Adaptation used in this project
+- Average blur kernels
+- Kernel sizes: **2×2, 4×4, 8×8, and 16×16**
+- Original class structure preserved
+- Output images saved as PNG files
+
+### Evaluated kernel sizes
+
+| Dataset | Kernel size |
+|---|---|
+| Original dataset | No blur |
+| Blurred dataset | 2×2 |
+| Blurred dataset | 4×4 |
+| Blurred dataset | 8×8 |
+| Blurred dataset | 16×16 |
+
+Larger kernels produce stronger blur and more severe loss of spatial detail.
+
+## Repository notebooks
+
+The kernel-based dataset generation and robustness experiments are implemented in:
+
+- `notebooks/kernel_blur_dataset_generation.ipynb`
+- `notebooks/robustness_kernel_2.ipynb`
+- `notebooks/robustness_kernel_4.ipynb`
+- `notebooks/robustness_kernel_8.ipynb`
+- `notebooks/robustness_kernel_16.ipynb`
+
+## Dataset availability
+
+The blurred datasets are not included directly in the repository due to
+GitHub storage limitations.
+
+In particular, the kernel-based degraded datasets could not be uploaded because
+their size exceeded the limit allowed by GitHub, resulting in the message:
+
+> *"Yowza, that’s a big file. Try again with a file smaller than 25MB."*
+
+For this reason, these datasets must be generated locally using the provided
+kernel preprocessing notebook.
+
+## Purpose of the experiment
+
+This analysis allows us to determine:
+
+- How sensitive the CNN model is to blur degradation
+- How classification accuracy changes as kernel size increases
+- The impact of local spatial smoothing on scene classification performance
+
+---
+
+# Notes
+
+All degraded datasets preserve the same **21-class structure** as the original
+UC Merced Land Use Dataset.
+
+Since these generated datasets are large, they are not stored in the repository.
+Instead, the repository provides the notebooks required to regenerate them locally
+and reproduce the robustness experiments.
