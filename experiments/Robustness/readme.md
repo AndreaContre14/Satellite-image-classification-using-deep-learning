@@ -114,7 +114,8 @@ original UC Merced dataset.
 
 | Dataset | SNR |
 |---|---|
-| Original dataset | ∞ (no noise) |
+| Original dataset | ∞ (no noise) 
+| Noisy dataset | 30 dB ||
 | Noisy dataset | 20 dB |
 | Noisy dataset | 10 dB |
 | Noisy dataset | 5 dB |
@@ -126,6 +127,7 @@ Lower SNR values correspond to stronger noise and more severe image degradation.
 The AWGN dataset generation and experiments are implemented in the following notebooks:
 
 - `notebooks/noise_dataset_generation_awgn.ipynb`
+- `notebooks/robustness_snr_30db.ipynb`
 - `notebooks/robustness_snr_20db.ipynb`
 - `notebooks/robustness_snr_10db.ipynb`
 - `notebooks/robustness_snr_5db.ipynb`
